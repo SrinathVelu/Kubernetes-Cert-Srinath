@@ -1,0 +1,113 @@
+Sure, let's break down each command and explain their purpose for learning:
+
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/piyushsachdeva/todoapp-docker
+   ```
+   - `git clone` is used to create a copy of the repository from the given URL. This command downloads the project files from GitHub to your local machine.
+
+2. **Change Directory:**
+   ```bash
+   cd todoapp-docker
+   ```
+   - `cd` stands for "change directory." This command navigates to the `todoapp-docker` directory, which contains the cloned repository.
+
+3. **Create a Dockerfile:**
+   ```bash
+   touch Dockerfile
+   ```
+   - `touch` is used to create an empty file named `Dockerfile`. This file will contain instructions for building the Docker image.
+
+4. **Edit the Dockerfile:**
+   ```bash
+   vi Dockerfile
+   ```
+   - `vi` is a text editor. This command opens the `Dockerfile` in the vi editor so you can add the necessary instructions for building your Docker image.
+
+5. **View the Dockerfile:**
+   ```bash
+   cat Dockerfile
+   ```
+   - `cat` is used to display the contents of the `Dockerfile` in the terminal.
+
+6. **Build the Docker Image:**
+   ```bash
+   docker build -t multi-stage:stage .
+   ```
+   - `docker build` creates a Docker image from the Dockerfile in the current directory (`.`).
+   - `-t multi-stage:stage` tags the image with the name `multi-stage` and the tag `stage`.
+
+7. **List Docker Images:**
+   ```bash
+   docker images
+   ```
+   - This command lists all Docker images currently available on your system.
+
+8. **Tag the Docker Image:**
+   ```bash
+   docker tag multi-stage:stage srinathvelu/learningsri:stage
+   ```
+   - `docker tag` creates a new tag for an existing image. Here, it tags `multi-stage:stage` as `srinathvelu/learningsri:stage`.
+
+9. **List Running Containers:**
+   ```bash
+   docker ps
+   ```
+   - `docker ps` lists all running Docker containers.
+
+10. **Push the Docker Image:**
+    ```bash
+    docker push srinathvelu/learningsri:stage
+    ```
+    - `docker push` uploads the tagged image `srinathvelu/learningsri:stage` to the Docker registry.
+
+11. **Pull the Docker Image:**
+    ```bash
+    docker pull srinathvelu/learningsri:stage
+    ```
+    - `docker pull` downloads the image `srinathvelu/learningsri:stage` from the Docker registry to your local machine.
+
+12. **Run the Docker Container:**
+    ```bash
+    docker run -it -dp 3000:3000 srinathvelu/learningsri:stage
+    ```
+    - `docker run` starts a new container from the specified image.
+    - `-it` makes the container interactive with a terminal.
+    - `-dp 3000:3000` maps port 3000 of the container to port 3000 on the host machine.
+    - `srinathvelu/learningsri:stage` specifies the image to use.
+
+13. **Execute a Command Inside the Container:**
+    ```bash
+    winpty docker exec -it priceless_shirley sh
+    ```
+    - `docker exec` runs a command in a running container.
+    - `-it` makes it interactive with a terminal.
+    - `priceless_shirley` is the name of the running container.
+    - `sh` starts a shell session inside the container.
+    - `winpty` is used on Windows to provide proper terminal emulation for interactive commands.
+
+Additional Learning
+**Remove a Docker Image:**
+    ```bash
+    docker image rm multi-stage:latest
+    ```
+    - `docker image rm` removes the specified Docker image from your local machine.
+    - `multi-stage:latest` is the name of the image to remove.
+
+**Tag an Image with a New Name:**
+    ```bash
+    docker tag multi srinathvelu/learningsir:test
+    ```
+    - `docker tag` creates a new tag for an existing image. Here, it tags `multi` as `srinathvelu/learningsir:test`.
+
+These commands cover the basic workflow of cloning a repository, creating a Docker image, running it, and managing Docker images and containers.
+
+Learning;
+
+you can run the image with the image name without tag or pushing into repository
+docker run -it -d multi sh   ''' multi is the image name'''
+winpty docker exec -it goofy_shtern sh  ''' the above command will create the container and the name is goofy'''
+
+If you tag that to the dockerhub repository in this case srinathvelu/learningsri is my custom docker hub repo and the tag is srinathvelu/learningsri:stage anything after the colon indicates tag
+if you have pushed that to the dockerhub registry you can use it for different environment with different tag
+
