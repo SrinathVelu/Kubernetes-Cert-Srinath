@@ -1,0 +1,65 @@
+Step1: Clone any application repository from github.com/docker
+
+In my personal lap i have created a separate folder for this learning in C/users/hp/downloads/learning-docker/
+
+Command: git clone https://github.com/docker/getting-started-app.git  # Currently in learning-docker folder in git bash cli after executing the command this will download the app files and place it in that folder
+
+Next need create a docker file -> Build an image -> Push to repository -> Pull it to environments -> run the container
+
+Step By Step commands executed:
+
+1. touch Dockerfile
+   *Creates a new Dockerfile to edit.*
+
+2. vi Dockerfile
+   *Opens the Dockerfile for editing.*
+ ---------------------------------------------------------------------------------------------------------------------
+```Dockerfile
+# Base Image: Uses Node.js 18 on Alpine Linux for a lightweight setup.
+FROM node:18-alpine
+
+# Working Directory: Sets the working directory to /app inside the container.
+WORKDIR /app
+
+# Copy Files: Copies all application files from the host to the container.
+COPY . .
+
+# Install Dependencies: Installs only production dependencies using Yarn.
+RUN yarn install --production
+
+# Run Command: Specifies the command to run the Node.js application.
+CMD ["node", "src/index.js"]
+
+# Expose Port: Exposes port 3000 to allow external access to the application running in the container.
+EXPOSE 3000
+```
+-----------------------------------------------------------------------------------------------------------------------
+3. cat Dockerfile 
+   *Displays the content of the Dockerfile.*
+
+4. docker build -t todosri .
+   *Builds a Docker image named 'todosri' using the files in the current directory.*
+
+5. docker images
+   *Lists all Docker images to verify if the image was created.*
+
+6. docker tag todosri:latest srinathvelu/learningsri:latest  
+   *Tags the 'todosri:latest' image with 'srinathvelu/learningsri:latest'. Here, 'srinathvelu' is the Docker user profile, 'Learningsri' is the personalized Docker repository, and 'latest' is the tag.*
+
+7. docker push srinathvelu/learningsri:latest 
+   *Pushes the tagged image to your Docker repository.*
+
+8. docker pull srinathvelu/learningsri:latest
+   *Pulls the image from your Docker repository to a different environment.*
+
+9. docker run -dp 3000:3000 srinathvelu/learningsri:latest  
+   *Runs a container from the image, mapping port 3000 on the host to port 3000 in the container.*
+
+10. docker ps
+    *Displays the status of running containers.*
+
+11. winpty docker exec -it <container_name> sh
+    *Executes a command inside a running container. If the container name is not specified, Docker assigns a default name. This command helps to troubleshoot by providing access to the container's shell.*
+
+
+
